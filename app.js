@@ -381,7 +381,6 @@ client.on("message", async (msg) => {
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-5-nano",
-      temperature: 0.2,
       messages,
     });
 
