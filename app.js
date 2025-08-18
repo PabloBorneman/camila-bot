@@ -64,13 +64,16 @@ app.get("/qr", (req, res) => {
 });
 
 // ──────────────────────────────────────────────────────────────────────
-/* 2) OpenAI (requerido) */
+/* 2) OpenAI (requerido) con sanitizado de key */
 // ──────────────────────────────────────────────────────────────────────
-if (!process.env.OPENAI_API_KEY) {
-  console.error("❌ Falta OPENAI_API_KEY en .env");
+const rawKey = process.env.OPENAI_API_KEY || "";
+const apiKey = rawKey.split(/\r?\n/)[0].trim(); // evita que se “pegue” PORT=... u otras líneas
+
+if (!apiKey || !/^sk-[\w-]+$/i.test(apiKey)) {
+  console.error("❌ OPENAI_API_KEY inválida o con formato raro. Revisá Variables en Railway.");
   process.exit(1);
 }
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = new OpenAI({ apiKey });
 
 // ──────────────────────────────────────────────────────────────────────
 /* 3) Utilidades “Camila” */
@@ -229,7 +232,7 @@ const sessions = new Map();
 const client = new Client({
   restartOnAuthFail: true,
   authStrategy: new LocalAuth({
-    dataPath: process.env.SESSION_PATH || '.wwebjs_auth'
+    dataPath: process.env.SESSION_PATH || ".wwebjs_auth" // en Railway: usar /data/session con Volume
   }),
   puppeteer: {
     headless: true,
