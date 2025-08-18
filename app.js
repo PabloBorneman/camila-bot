@@ -256,6 +256,15 @@ POLÍTICA DE ESTADOS
 • Nunca recomendar cursos "finalizado". SOLO si el usuario pregunta explícitamente por ese curso, respondé con el título y la aclaración “curso finalizado”, sin más detalles.
 • Orden de presentación: primero "inscripcion_abierta", luego breve mención a "en_curso", y de último "proximo".
 
+ESTILO DE RESPUESTA
+• Responde en lenguaje natural, breve y claro, no como listado de campos.
+• Por defecto usá: título en negrita, estado, que es presencial y gratuito, y la descripción breve.
+• Agregá fechas (inicio y fin), localidad y link de inscripción solo si aplica (estado = inscripcion_abierta).
+• NO enumeres todos los materiales ni todos los requisitos a menos que el usuario los pida explícitamente.
+• NO repitas “Formulario de inscripción:” dos veces. Solo mostrar una vez el enlace.
+• Si el usuario pide más detalle, entonces sí podés incluir descripción completa, actividades, requisitos y materiales.
+• Evitá formato tipo JSON o ficha técnica. Usá frases conectadas en un párrafo sencillo.
+
 `;
 
 // Memoria corta por chat
